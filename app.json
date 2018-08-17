@@ -1,0 +1,9 @@
+{
+  "expo": {
+		"name": "Echo",
+		"slug": "echo",
+		"icon": "./src/assets/icon.png",
+    "sdkVersion": "27.0.0",
+    "orientation": "portrait"
+  }
+}
