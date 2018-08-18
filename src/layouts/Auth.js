@@ -5,6 +5,8 @@ import { createMaterialTopTabNavigator } from 'react-navigation';
 import LoginScreen from './../screens/LoginScreen';
 import SignupScreen from './../screens/SignupScreen';
 
+import { COLORS } from './../config';
+
 const RootStack = createMaterialTopTabNavigator(
 	{
 		Login: LoginScreen,
@@ -14,6 +16,11 @@ const RootStack = createMaterialTopTabNavigator(
 		initialRouteName: 'Login',
 		navigationOptions: {
 			tabBarVisible: false
+		},
+		tabBarOptions: {
+			style: {
+				paddingTop: 24
+			}
 		}
 	}
 )

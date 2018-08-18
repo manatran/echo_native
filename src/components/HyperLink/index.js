@@ -5,7 +5,6 @@ import { COLORS } from './../../config';
 export default class HyperLink extends Component {
 
 	render() {
-		console.log(this.props)
 		return (
 			<TouchableOpacity onPress={() => this.props.navigate()} style={{padding: 8}}>
 				<Text style={{color: COLORS.secondary}}>{this.props.text}</Text>

@@ -1,10 +1,11 @@
 import { isEmpty } from '../utils';
 
-import { SET_CURRENT_USER } from '../constants';
+import { SET_CURRENT_USER, GET_ERRORS } from '../constants';
 
 const initialState = {
 	isAuthenticated: false,
-	user: {}
+	user: {},
+	errors: ''
 };
 
 export default function (state = initialState, action) {
@@ -15,6 +16,11 @@ export default function (state = initialState, action) {
 				isAuthenticated: !isEmpty(action.payload),
 				user: action.payload
 			};
+		case GET_ERRORS:
+			return {
+				...state,
+				errors: action.payload
+			}
 		default:
 			return state;
 	}

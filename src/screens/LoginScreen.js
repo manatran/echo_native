@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, Image } from 'react-native';
+import { connect } from 'react-redux';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import { loginUser } from './../actions/authActions';
+
 import Icon from '../components/Icon';
 import HyperLink from '../components/HyperLink';
+
 import { COLORS, STYLES } from '../config';
 import logo from './../assets/logo.png';
 
-export default class Login extends Component {
+class Login extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
+			errors:'',
 			email: '',
 			password: ''
+		}
+	}
+
+	onPress(){
+		if(this.state.email && this.state.password){
+			const userData = {
+				email: this.state.email,
+				password: this.state.password
+			};
+			this.props.loginUser(userData);
+		} else{
+			this.setState({errors: 'Please fill in the fields.'})
 		}
 	}
 
@@ -21,6 +38,7 @@ export default class Login extends Component {
 				<View style={styles.container}>
 					<View style={STYLES.card}>
 						<Image source={logo} style={styles.image} />
+						<Text style={{color: COLORS.primary}}>{this.state.errors}</Text>
 						<View style={styles.form}>
 							<View style={styles.inputContainer}>
 								<Icon style={styles.icon} icon="&#xf0e0;" />
@@ -42,9 +60,9 @@ export default class Login extends Component {
 								/>
 							</View>
 						</View>
-						<TouchableHighlight style={styles.button}>
+						<TouchableOpacity style={styles.button} onPress={() => this.onPress()}>
 							<Text style={styles.buttonText}>{'Login'.toUpperCase()}</Text>
-						</TouchableHighlight>
+						</TouchableOpacity>
 						<Text>Don't have an account yet?</Text>
 						<HyperLink text="Sign up here!" navigate={() => this.props.navigation.navigate('Signup')}/>
 					</View>
@@ -53,6 +71,20 @@ export default class Login extends Component {
 		);
 	}
 }
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		loginUser: (userData) => dispatch(loginUser(userData))
+	}
+};
+const mapStateToProps = state => ({
+  errors: state.errors
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+
 const styles = StyleSheet.create({
 	app: {
 		flex: 1,

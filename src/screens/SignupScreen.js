@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, Image } from 'react-native';
+import { connect } from 'react-redux';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import { registerUser } from './../actions/authActions';
+
 import Icon from '../components/Icon';
 import HyperLink from '../components/HyperLink';
+
 import { COLORS, STYLES } from '../config';
 import logo from './../assets/logo.png';
 
@@ -63,9 +67,9 @@ class Signup extends Component {
 								/>
 							</View>
 						</View>
-						<TouchableHighlight style={styles.button}>
+						<TouchableOpacity style={styles.button}>
 							<Text style={styles.buttonText}>{'Sign up'.toUpperCase()}</Text>
-						</TouchableHighlight>
+						</TouchableOpacity>
 						<Text>Already have an account?</Text>
 						<HyperLink text="Log in here!" navigate={() => this.props.navigation.navigate('Login')}/>
 					</View>
@@ -75,7 +79,17 @@ class Signup extends Component {
 	}
 }
 
-export default Signup;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		registerUser: (userData) => dispatch(registerUser(userData))
+	}
+};
+const mapStateToProps = state => ({
+  errors: state.errors
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
 
 const styles = StyleSheet.create({
 	app: {
