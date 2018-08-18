@@ -24,7 +24,12 @@ export default class Icon extends Component {
 	render() {
 		if (this.state.fontLoaded) {
 			return (
-				<Text style={{ fontFamily: 'fontawesome' }}>{this.props.icon}</Text>
+				<Text style={[ this.props.style, {
+					fontFamily: 'fontawesome',
+					textAlign: 'center'
+				}]}>
+					{this.props.icon}
+				</Text>
 			);
 		} else {
 			return null
