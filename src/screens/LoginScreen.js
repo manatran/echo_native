@@ -14,13 +14,13 @@ class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			errors:'',
 			email: '',
 			password: ''
 		}
 	}
 
 	onPress(){
+		this.setState({errors: ''})
 		if(this.state.email && this.state.password){
 			const userData = {
 				email: this.state.email,
@@ -38,7 +38,7 @@ class Login extends Component {
 				<View style={styles.container}>
 					<View style={STYLES.card}>
 						<Image source={logo} style={styles.image} />
-						<Text style={{color: COLORS.primary}}>{this.state.errors}</Text>
+						<Text style={{color: COLORS.primary}}>{this.props.errors}</Text>
 						<View style={styles.form}>
 							<View style={styles.inputContainer}>
 								<Icon style={styles.icon} icon="&#xf0e0;" />
@@ -80,7 +80,6 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = state => ({
   errors: state.errors
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
 

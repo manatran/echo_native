@@ -21,12 +21,36 @@ class Signup extends Component {
 		}
 	}
 
+	onPress(){
+		this.setState({errors: ''})
+		if(this.state.email && this.state.username && this.state.password && this.state.password2){
+			if(this.state.password === this.state.password2){
+				const userData = {
+					email: this.state.email,
+					username: this.state.username,
+					password: this.state.password,
+					password2: this.state.password2
+				};
+				this.props.registerUser(userData);
+			}else{
+			this.setState({errors: 'Please make sure the passwords match.'});
+			}
+			
+		} else{
+			this.setState({errors: 'Please fill in the fields.'});
+		}
+	}
+
 	render() {
 		return (
 			<View style={styles.app}>
 				<View style={styles.container}>
 					<View style={STYLES.card}>
+						
 						<Image source={logo} style={styles.image} />
+						<Text style={{color: COLORS.primary}}>{this.state.errors}</Text>
+						<Text style={{color: COLORS.secondary}}>{this.props.success}</Text>
+						
 						<View style={styles.form}>
 							<View style={styles.inputContainer}>
 								<Icon style={styles.icon} icon="&#xf0e0;" />
@@ -67,9 +91,11 @@ class Signup extends Component {
 								/>
 							</View>
 						</View>
-						<TouchableOpacity style={styles.button}>
+						
+						<TouchableOpacity style={styles.button} onPress={() => this.onPress()}>
 							<Text style={styles.buttonText}>{'Sign up'.toUpperCase()}</Text>
 						</TouchableOpacity>
+
 						<Text>Already have an account?</Text>
 						<HyperLink text="Log in here!" navigate={() => this.props.navigation.navigate('Login')}/>
 					</View>
@@ -85,7 +111,8 @@ const mapDispatchToProps = (dispatch) => {
 	}
 };
 const mapStateToProps = state => ({
-  errors: state.errors
+	errors: state.errors,
+	success: state.success
 });
 
 

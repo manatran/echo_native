@@ -1,4 +1,4 @@
-import { GET_ERRORS, SET_CURRENT_USER } from '../constants';
+import { GET_ERRORS, GET_SUCCESS, SET_CURRENT_USER } from '../constants';
 
 // Register User
 export const registerUser = (userData) => dispatch => {
@@ -11,10 +11,12 @@ export const registerUser = (userData) => dispatch => {
 		},
 		body: user
 	})
-	.then(res => res.json())
-	.then(res => {
-		dispatch(setCurrentUser(res.data));
-	})
+	.then(
+		dispatch({
+			type: GET_SUCCESS,
+			payload: 'Successful! You can now log in.'
+		})
+	)
 	.catch(err =>
 		dispatch({
 			type: GET_ERRORS,
@@ -36,7 +38,6 @@ export const loginUser = userData => dispatch => {
 	})
 	.then(res => res.json())
 	.then(res => {
-		console.log(res)
 		dispatch(setCurrentUser(res));
 	})
 	.catch(err => 
