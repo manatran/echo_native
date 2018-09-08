@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation';
-import { COLORS } from './../config';
+import { LIGHTCOLORS, DARKCOLORS } from './../config';
 
+import { store } from './../store';
+
+import Header from './../components/Header';
 import HomeScreen from './../screens/HomeScreen';
 
 const TabNav = createMaterialTopTabNavigator(
@@ -11,18 +14,17 @@ const TabNav = createMaterialTopTabNavigator(
 		Messages: HomeScreen
 	},
 	{
+		tabBarComponent: props => <Header {...props}/>,
 		initialRouteName: 'Discussion',
 		tabBarOptions: {
-			activeTintColor: COLORS.primary,
-			inactiveTintColor: COLORS.grey,
+			activeTintColor: DARKCOLORS.primary,
+			inactiveTintColor: LIGHTCOLORS.grey,
 			indicatorStyle: {
-				backgroundColor: COLORS.primary,
+				backgroundColor: DARKCOLORS.primary,
 				height: 3
 			}, 
 			style: {
-				paddingTop: 24,
-				height: 74,
-				backgroundColor: COLORS.lightfg
+				height: 50
 			},
 			labelStyle: {
 				fontWeight: "bold",

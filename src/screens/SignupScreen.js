@@ -6,7 +6,7 @@ import { registerUser } from './../actions/authActions';
 import Icon from '../components/Icon';
 import HyperLink from '../components/HyperLink';
 
-import { COLORS, STYLES } from '../config';
+import { LIGHTCOLORS, STYLES } from '../config';
 import logo from './../assets/logo.png';
 
 class Signup extends Component {
@@ -48,8 +48,8 @@ class Signup extends Component {
 					<View style={STYLES.card}>
 						
 						<Image source={logo} style={styles.image} />
-						<Text style={{color: COLORS.primary}}>{this.state.errors}</Text>
-						<Text style={{color: COLORS.secondary}}>{this.props.success}</Text>
+						<Text style={{color: LIGHTCOLORS.primary}}>{this.state.errors}</Text>
+						<Text style={{color: LIGHTCOLORS.secondary}}>{this.props.success}</Text>
 						
 						<View style={styles.form}>
 							<View style={styles.inputContainer}>
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: COLORS.lightbg
+		backgroundColor: LIGHTCOLORS.background
 	},
 	container: {
 		width: '95%',
@@ -154,14 +154,14 @@ const styles = StyleSheet.create({
 	},
 	icon: {
 		width: '5%',
-		color: COLORS.darkgrey
+		color: LIGHTCOLORS.darkgrey
 	},
 	input: {
 		width: '95%',
 		height: 40,
 		marginLeft: 8,
 		paddingLeft: 8,
-		backgroundColor: COLORS.lightbg,
+		backgroundColor: LIGHTCOLORS.background,
 		borderRadius: 8,
 		elevation: 1,
 	},
@@ -171,11 +171,11 @@ const styles = StyleSheet.create({
 		marginBottom: 32,
 		paddingHorizontal: 24,
 		paddingVertical: 8,
-		backgroundColor: COLORS.secondary,
+		backgroundColor: LIGHTCOLORS.secondary,
 		borderRadius: 8
 	},
 	buttonText: {
-		color: COLORS.lightfg,
+		color: LIGHTCOLORS.foreground,
 		fontWeight: '900'
 	}
 });

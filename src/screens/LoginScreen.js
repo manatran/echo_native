@@ -6,7 +6,7 @@ import { loginUser } from './../actions/authActions';
 import Icon from '../components/Icon';
 import HyperLink from '../components/HyperLink';
 
-import { COLORS, STYLES } from '../config';
+import { LIGHTCOLORS, STYLES } from '../config';
 import logo from './../assets/logo.png';
 
 class Login extends Component {
@@ -38,7 +38,7 @@ class Login extends Component {
 				<View style={styles.container}>
 					<View style={STYLES.card}>
 						<Image source={logo} style={styles.image} />
-						<Text style={{color: COLORS.primary}}>{this.props.errors}</Text>
+						<Text style={{color: LIGHTCOLORS.primary}}>{this.props.errors}</Text>
 						<View style={styles.form}>
 							<View style={styles.inputContainer}>
 								<Icon style={styles.icon} icon="&#xf0e0;" />
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: COLORS.lightbg
+		backgroundColor: LIGHTCOLORS.background
 	},
 	container: {
 		width: '95%',
@@ -120,14 +120,14 @@ const styles = StyleSheet.create({
 	},
 	icon: {
 		width: '5%',
-		color: COLORS.darkgrey
+		color: LIGHTCOLORS.darkgrey
 	},
 	input: {
 		width: '95%',
 		height: 40,
 		marginLeft: 8,
 		paddingLeft: 8,
-		backgroundColor: COLORS.lightbg,
+		backgroundColor: LIGHTCOLORS.background,
 		borderRadius: 8,
 		elevation: 1
 	},
@@ -137,11 +137,11 @@ const styles = StyleSheet.create({
 		marginBottom: 32,
 		paddingHorizontal: 24,
 		paddingVertical: 8,
-		backgroundColor: COLORS.secondary,
+		backgroundColor: LIGHTCOLORS.secondary,
 		borderRadius: 8
 	},
 	buttonText: {
-		color: COLORS.lightfg,
+		color: LIGHTCOLORS.foreground,
 		fontWeight: '900'
 	}
 });

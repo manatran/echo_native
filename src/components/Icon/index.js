@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { Font } from 'expo';
 
-export default class Icon extends Component {
+class Icon extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -36,3 +36,5 @@ export default class Icon extends Component {
 		}
 	}
 }
+
+export default Icon;

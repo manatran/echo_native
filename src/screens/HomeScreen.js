@@ -1,31 +1,35 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { ScrollView } from 'react-native';
 import { connect } from "react-redux";
-import { logoutUser } from './../actions/authActions';
+
+import Post from '../components/Post';
+import Nightmode from '../components/Nightmode';
+
+
+import { LIGHTCOLORS, DARKCOLORS } from '../config';
 
 class HomeScreen extends Component {
-	onPress(){
-		this.props.logoutUser();
-	}
+
 	render() {
 		return (
-			<View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-				<Text>Hello World</Text>
-				<Button title="Logout" onPress={() => this.onPress()}/>
-			</View>
+			<ScrollView style={{padding: 4, paddingTop: 8, backgroundColor: this.props.nightmode ? DARKCOLORS.background : LIGHTCOLORS.background}}>
+				<Nightmode />
+				<Post />
+				<Post />
+				<Post />
+				<Post />
+				<Post />
+				<Post />
+				<Post />
+			</ScrollView>
 		);
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		logoutUser: (userData) => dispatch(logoutUser(userData))
-	}
-};
 const mapStateToProps = state => {
 	return {
-		user: state.auth.user.user
+		nightmode: state.nightmode.nightmode
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(mapStateToProps)(HomeScreen);
