@@ -2,23 +2,31 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { connect } from "react-redux";
 
-import Icon from '../Icon';
+import { getTimeDifference } from '../../utils';
+import { store } from '../../store';
 
 import { LIGHTCOLORS, DARKCOLORS, STYLES } from '../../config';
 
 class Post extends Component {
-
 	render() {
 		return (
-			<View style={[STYLES.card, styles.postContainer, {backgroundColor: this.props.nightmode ? DARKCOLORS.foreground : LIGHTCOLORS.foreground}]}>
-				<Image source={{uri: 'https://i.scdn.co/image/4cddcc0f85d9cedb746cea9b3d339896e3c35178'}} style={styles.postImage} />
+			<View style={[STYLES.card, styles.postContainer, { backgroundColor: this.props.nightmode ? DARKCOLORS.foreground : LIGHTCOLORS.foreground }]}>
+				<Image source={{ uri: this.props.thumbnail ? this.props.thumbnail : 'https://api.adorable.io/avatars/128/notfound.png' }} style={styles.postImage} />
 				<View style={styles.postDescription}>
-					<Text style={[styles.title, {color: this.props.nightmode ? DARKCOLORS.lightgrey : LIGHTCOLORS.darkgrey}]}>Rust In Peace</Text>
-					<Text style={[styles.subtitle, {color: this.props.nightmode ? DARKCOLORS.lightgrey : LIGHTCOLORS.grey}]}>Megadeth</Text>
+					<Text style={[styles.title, { color: this.props.nightmode ? DARKCOLORS.lightgrey : LIGHTCOLORS.darkgrey }]}>
+						{this.props.title}
+					</Text>
+					<Text style={[styles.subtitle, { color: this.props.nightmode ? DARKCOLORS.lightgrey : LIGHTCOLORS.grey }]}>
+						{this.props.subtitle}
+					</Text>
 					<View style={styles.meta}>
-						<Text style={[styles.author, {color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey}]} >by manaus_t</Text>
-						<Text style={[styles.circle, {color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey}]}>&#x25cf;</Text>
-						<Text style={[styles.timestamp, {color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey}]}>12 days ago</Text>
+						<Text style={[styles.author, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]} >
+							by {this.props.author}
+						</Text>
+						<Text style={[styles.circle, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]}>&#x25cf;</Text>
+						<Text style={[styles.timestamp, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]}>
+							{getTimeDifference(this.props.timestamp)}
+						</Text>
 					</View>
 				</View>
 			</View>
@@ -49,7 +57,7 @@ const styles = StyleSheet.create({
 	postDescription: {
 		padding: 8,
 		height: 150,
-		flex:1,
+		flex: 1,
 		borderTopRightRadius: 8,
 		borderBottomRightRadius: 8,
 	},
