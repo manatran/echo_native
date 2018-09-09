@@ -5,8 +5,6 @@ import { toggleNightmode } from './../../actions/nightmodeActions';
 import { LIGHTCOLORS, DARKCOLORS } from '../../config';
 import Icon from './../Icon';
 
-import {store} from '../../store'
-
 class Nightmode extends Component {
 
 	render() {

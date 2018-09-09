@@ -1,5 +1,3 @@
-import { store } from '../store';
-
 export const DARKCOLORS = {
 	lightgrey: '#A7A7A7',
 	grey: '#BEBEBE',

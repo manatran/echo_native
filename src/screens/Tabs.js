@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 import { LIGHTCOLORS, DARKCOLORS } from './../config';
 
-import { store } from './../store';
-
 import Header from './../components/Header';
 import HomeScreen from './../screens/HomeScreen';
+import HomeScreenNavigator from './../screens/HomeScreenNavigator';
 
 const TabNav = createMaterialTopTabNavigator(
 	{
-		Discussion: HomeScreen,
+		Discussion: HomeScreenNavigator,
 		Browse: HomeScreen,
 		Messages: HomeScreen
 	},

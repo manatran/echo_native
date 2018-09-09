@@ -3,33 +3,33 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { connect } from "react-redux";
 
 import { getTimeDifference } from '../../utils';
-import { store } from '../../store';
 
 import { LIGHTCOLORS, DARKCOLORS, STYLES } from '../../config';
 
 class Post extends Component {
+
 	render() {
 		return (
-			<View style={[STYLES.card, styles.postContainer, { backgroundColor: this.props.nightmode ? DARKCOLORS.foreground : LIGHTCOLORS.foreground }]}>
-				<Image source={{ uri: this.props.thumbnail ? this.props.thumbnail : 'https://api.adorable.io/avatars/128/notfound.png' }} style={styles.postImage} />
-				<View style={styles.postDescription}>
-					<Text style={[styles.title, { color: this.props.nightmode ? DARKCOLORS.lightgrey : LIGHTCOLORS.darkgrey }]}>
-						{this.props.title}
-					</Text>
-					<Text style={[styles.subtitle, { color: this.props.nightmode ? DARKCOLORS.lightgrey : LIGHTCOLORS.grey }]}>
-						{this.props.subtitle}
-					</Text>
-					<View style={styles.meta}>
-						<Text style={[styles.author, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]} >
-							by {this.props.author}
+				<View style={[STYLES.card, styles.postContainer, { backgroundColor: this.props.nightmode ? DARKCOLORS.foreground : LIGHTCOLORS.foreground }]}>
+					<Image source={{ uri: this.props.thumbnail ? this.props.thumbnail : 'https://api.adorable.io/avatars/128/notfound.png' }} style={styles.postImage} />
+					<View style={styles.postDescription}>
+						<Text style={[styles.title, { color: this.props.nightmode ? DARKCOLORS.lightgrey : LIGHTCOLORS.darkgrey }]}>
+							{this.props.title}
 						</Text>
-						<Text style={[styles.circle, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]}>&#x25cf;</Text>
-						<Text style={[styles.timestamp, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]}>
-							{getTimeDifference(this.props.timestamp)}
+						<Text style={[styles.subtitle, { color: this.props.nightmode ? DARKCOLORS.lightgrey : LIGHTCOLORS.grey }]}>
+							{this.props.subtitle}
 						</Text>
+						<View style={styles.meta}>
+							<Text style={[styles.author, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]} >
+								by {this.props.author}
+							</Text>
+							<Text style={[styles.circle, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]}>&#x25cf;</Text>
+							<Text style={[styles.timestamp, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]}>
+								{getTimeDifference(this.props.timestamp)}
+							</Text>
+						</View>
 					</View>
 				</View>
-			</View>
 		);
 	}
 }
