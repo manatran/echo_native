@@ -1,67 +1,87 @@
 import React, { Component } from 'react';
-import { Dimensions } from 'react-native';
 import { connect } from "react-redux";
-import { createDrawerNavigator } from 'react-navigation';
-import { LIGHTCOLORS } from './../config';
+import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
+import { LIGHTCOLORS, DARKCOLORS } from './../config';
 
-import Icon from './../components/Icon'
+import { store } from '../store';
 
-import TabNav from './../screens/Tabs';
 import HomeScreen from './../screens/HomeScreen';
+import PostScreen from './../screens/PostScreen';
 
-const RootStack = createDrawerNavigator(
+import Header from './../components/Header';
+
+const TabNav = createMaterialTopTabNavigator(
+	{
+		Discussion: HomeScreen,
+		Browse: HomeScreen,
+		Messages: HomeScreen
+	},
+	{
+		tabBarComponent: props => <Header {...props} />,
+		initialRouteName: 'Discussion',
+		tabBarOptions: {
+			activeTintColor: DARKCOLORS.primary,
+			inactiveTintColor: LIGHTCOLORS.grey,
+			indicatorStyle: {
+				backgroundColor: DARKCOLORS.primary,
+				height: 3
+			},
+			style: {
+				height: 50
+			},
+			labelStyle: {
+				fontWeight: "bold",
+			}
+		}
+	}
+)
+
+const RootStack = createStackNavigator(
 	{
 		Home: {
 			screen: TabNav,
 			navigationOptions: {
-				drawerIcon: <Icon icon="&#xf015;" style={{ color: LIGHTCOLORS.grey }} />
+				header: null
 			},
+		},
+		Detail: {
+			screen: PostScreen,
+			navigationOptions: {
+				headerStyle: {
+					backgroundColor: store.getState().nightmode.nightmode ? DARKCOLORS.foreground : LIGHTCOLORS.foreground,
+				},
+				headerTintColor: store.getState().nightmode.nightmode ? DARKCOLORS.lightgrey : LIGHTCOLORS.darkgrey, 
+			}
 		},
 		Music: {
 			screen: HomeScreen,
-			navigationOptions: {
-				drawerIcon: <Icon icon="&#xf001;" style={{ color: LIGHTCOLORS.grey }} />,
-				headerLeft: <Icon icon="&#xf001;" onPress={ () => navigation.navigate('DrawerOpen') } />
-			},
 		},
 		Profile: {
 			screen: HomeScreen,
-			navigationOptions: {
-				drawerIcon: <Icon icon="&#xf007;" style={{ color: LIGHTCOLORS.grey }} />
-			},
 		},
 		Playlists: {
 			screen: HomeScreen,
-			navigationOptions: {
-				drawerIcon: <Icon icon="&#xf04b;" style={{ color: LIGHTCOLORS.grey }} />
-			},
 		},
 		Settings: HomeScreen,
 		'Privacy policy': HomeScreen
 	},
 	{
 		initialRouteName: 'Home',
-		drawerWidth: Dimensions.get('window').width * .75,
-		drawerBackgroundColor: LIGHTCOLORS.foreground,
-		contentOptions: {
-			activeTintColor: LIGHTCOLORS.grey,
-			activeBackgroundColor: LIGHTCOLORS.foreground,
-			inactiveTintColor: LIGHTCOLORS.grey
-		}
+		headerMode: 'screen',
 	}
 )
 
 class Echo extends Component {
 	render() {
 		return (
-			<RootStack />
+			<RootStack  />
 		);
 	}
 }
 
 const mapStateToProps = state => {
 	return {
-		nav: state.nav.open
+		nightmode: state.nightmode.nightmode
 	};
 };
 

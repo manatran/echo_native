@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationActions } from "react-navigation";
 
 import Post from '../components/Post';
 import Nightmode from '../components/Nightmode';
 
-
 import { LIGHTCOLORS, DARKCOLORS } from '../config';
+
+let appNavRef;
 
 class HomeScreen extends Component {
 
@@ -31,10 +33,7 @@ class HomeScreen extends Component {
 	}
 
 	_openDetail(id) {
-		this.props.navigation.navigate(
-			'Post',
-			{ id: id },
-		);
+		this.props.navigation.navigate('Detail', {id: id})
 	}
 
 	render() {
