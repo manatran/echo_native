@@ -54,14 +54,7 @@ class HomeScreen extends Component {
 
 						{this.state.posts.map((post, i) => (
 							<TouchableOpacity onPress={() => this._openDetail(post._id)} key={post._id}>
-								<Post
-									thumbnail={post.content.images.length > 0 ? post.content.images[0].url : 'https://api.adorable.io/avatars/128/notfound.png'}
-									title={post.content.title}
-									subtitle={post.content.artist_name}
-									type={post.type}
-									author={post.author.username}
-									timestamp={post.created_at}
-								/>
+								<Post post={post} />
 							</TouchableOpacity>
 						))}
 

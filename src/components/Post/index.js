@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from "react-redux";
 
 import { getTimeDifference } from '../../utils';
@@ -10,26 +10,28 @@ class Post extends Component {
 
 	render() {
 		return (
-				<View style={[STYLES.card, styles.postContainer, { backgroundColor: this.props.nightmode ? DARKCOLORS.foreground : LIGHTCOLORS.foreground }]}>
-					<Image source={{ uri: this.props.thumbnail ? this.props.thumbnail : 'https://api.adorable.io/avatars/128/notfound.png' }} style={styles.postImage} />
-					<View style={styles.postDescription}>
+			<View style={[STYLES.card, styles.postContainer, { backgroundColor: this.props.nightmode ? DARKCOLORS.foreground : LIGHTCOLORS.foreground }]}>
+				<Image source={{ uri: this.props.post.content.images.length > 0 ? this.props.post.content.images[0].url : 'https://api.adorable.io/avatars/128/notfound.png' }} style={styles.postImage} />
+				<View style={styles.postDescription}>
+					<View>
 						<Text style={[styles.title, { color: this.props.nightmode ? DARKCOLORS.lightgrey : LIGHTCOLORS.darkgrey }]}>
-							{this.props.title}
+							{this.props.post.content.title}
 						</Text>
 						<Text style={[styles.subtitle, { color: this.props.nightmode ? DARKCOLORS.lightgrey : LIGHTCOLORS.grey }]}>
-							{this.props.subtitle}
+							{this.props.post.content.artist_name}
 						</Text>
-						<View style={styles.meta}>
-							<Text style={[styles.author, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]} >
-								by {this.props.author}
-							</Text>
-							<Text style={[styles.circle, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]}>&#x25cf;</Text>
-							<Text style={[styles.timestamp, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]}>
-								{getTimeDifference(this.props.timestamp)}
-							</Text>
-						</View>
+					</View>
+					<View style={styles.meta}>
+						<Text style={[styles.author, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]} >
+							by {this.props.post.author.username}
+						</Text>
+						<Text style={[styles.circle, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]}>&#x25cf;</Text>
+						<Text style={[styles.timestamp, { color: this.props.nightmode ? DARKCOLORS.grey : LIGHTCOLORS.lightgrey }]}>
+							{getTimeDifference(this.props.post.created_at)}
+						</Text>
 					</View>
 				</View>
+			</View>
 		);
 	}
 }

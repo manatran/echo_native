@@ -13,6 +13,9 @@ const HomeScreenNavigation = createStackNavigator({
 	},
 	Post: {
 		screen: PostScreen,
+		navigationOptions: {
+			header: null
+		},
 	},
 });
 
